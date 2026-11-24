@@ -1,0 +1,145 @@
+/* ============================================
+   GLOBAL RESET & THEME VARIABLES
+   ============================================ */
+:root {
+  --cream: #FFF9F0;
+  --white: #FFFFFF;
+  --dark-red: #A62B1F;
+  --red: #D63C2F;
+  --pink: #FF8FA3;
+  --light-pink: #FFD6DE;
+  --orange: #F08A5D;
+  --dark: #2B1D1D;
+
+  --font-serif: "Playfair Display", serif;
+  --font-script: "Dancing Script", cursive;
+  --font-hand: "Caveat", cursive;
+  --font-sans: "Poppins", sans-serif;
+
+  --shadow-soft: 0 8px 24px rgba(43, 29, 29, 0.12);
+  --shadow-medium: 0 12px 36px rgba(43, 29, 29, 0.18);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+}
+
+/* Theme overrides - applied via data-theme attribute on the experience root */
+[data-theme="pink-love"] {
+  --dark-red: #C2185B;
+  --red: #FF4D79;
+  --pink: #FFA6C1;
+  --light-pink: #FFE3EC;
+  --orange: #FF7EB3;
+}
+
+[data-theme="purple-dream"] {
+  --dark-red: #5B2A86;
+  --red: #8E4EC6;
+  --pink: #C9A6FF;
+  --light-pink: #ECE0FF;
+  --orange: #B784E0;
+  --cream: #FBF7FF;
+}
+
+[data-theme="pastel"] {
+  --dark-red: #E08A9E;
+  --red: #F7B2C4;
+  --pink: #FFD1DC;
+  --light-pink: #FFF0F3;
+  --orange: #FFCBA4;
+  --cream: #FFFDF9;
+  --dark: #4A3B3B;
+}
+
+[data-theme="dark-night"] {
+  --cream: #241A26;
+  --white: #2E2130;
+  --dark-red: #FF6B81;
+  --red: #FF8FA3;
+  --pink: #C77DFF;
+  --light-pink: #3A2A3D;
+  --orange: #FFB07C;
+  --dark: #FDF2F8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--cream);
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+::selection {
+  background: var(--pink);
+  color: var(--white);
+}
+
+/* Custom scrollbar - subtle scrapbook feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--light-pink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--red);
+  border-radius: 10px;
+}
+
+/* Accessibility: honor reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--dark-red);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

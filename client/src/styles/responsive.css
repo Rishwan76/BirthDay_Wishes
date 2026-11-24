@@ -1,0 +1,45 @@
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+  place-items: center;
+  margin-top: 24px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .two-col {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 12px 24px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+@media (max-width: 480px) {
+  .paper-page {
+    border-radius: 18px;
+  }
+  .polaroid {
+    max-width: 220px;
+  }
+}
+
+.nowrap-safe {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}

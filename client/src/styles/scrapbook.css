@@ -1,0 +1,228 @@
+/* ============================================
+   SCRAPBOOK VISUAL ELEMENTS
+   Paper pages, gingham borders, polaroids,
+   tape, paper clips, ribbons, stickers.
+   ============================================ */
+
+.scrapbook-root {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 48px);
+  position: relative;
+  background:
+    radial-gradient(circle at 20% 20%, var(--light-pink) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, var(--light-pink) 0%, transparent 40%),
+    var(--cream);
+}
+
+/* The main paper "page" that content sits on */
+.paper-page {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-medium);
+  padding: clamp(24px, 5vw, 56px);
+  overflow: hidden;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 27px,
+      rgba(166, 43, 31, 0.035) 28px
+    );
+}
+
+/* Gingham/checkered border frame */
+.gingham-border {
+  position: absolute;
+  inset: 0;
+  border: 14px solid transparent;
+  border-image: repeating-conic-gradient(var(--red) 0% 25%, var(--white) 0% 50%) 20;
+  pointer-events: none;
+  border-radius: var(--radius-lg);
+  opacity: 0.9;
+}
+
+.gingham-inset {
+  position: absolute;
+  inset: 14px;
+  border-radius: calc(var(--radius-lg) - 8px);
+  pointer-events: none;
+}
+
+/* Headings */
+.heading-serif {
+  font-family: var(--font-serif);
+  color: var(--dark-red);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.heading-script {
+  font-family: var(--font-script);
+  color: var(--red);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.handwritten {
+  font-family: var(--font-hand);
+  color: var(--dark);
+}
+
+/* Ribbon banner for recipient name */
+.ribbon {
+  display: inline-block;
+  position: relative;
+  background: var(--dark-red);
+  color: var(--white);
+  padding: 10px 32px;
+  font-family: var(--font-script);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  border-radius: 6px;
+  box-shadow: var(--shadow-soft);
+}
+.ribbon::before,
+.ribbon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  border-style: solid;
+  border-width: 22px 12px;
+}
+.ribbon::before {
+  left: -12px;
+  border-color: var(--dark-red) var(--dark-red) transparent transparent;
+  filter: brightness(0.8);
+}
+.ribbon::after {
+  right: -12px;
+  border-color: var(--dark-red) transparent transparent var(--dark-red);
+  filter: brightness(0.8);
+}
+
+/* Polaroid photo frame */
+.polaroid {
+  background: var(--white);
+  padding: 12px 12px 44px 12px;
+  box-shadow: var(--shadow-soft);
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
+}
+.polaroid img {
+  border-radius: 2px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  background: var(--light-pink);
+}
+.polaroid-caption {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  color: var(--dark-red);
+  padding: 0 8px;
+}
+.polaroid:hover,
+.polaroid:focus-within {
+  transform: translateY(-8px) rotate(0deg) scale(1.04);
+  box-shadow: var(--shadow-medium);
+  z-index: 5;
+}
+
+/* Tape sticker */
+.tape {
+  position: absolute;
+  width: 70px;
+  height: 26px;
+  background: rgba(255, 214, 222, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  z-index: 2;
+}
+
+/* Paper clip (simple SVG-like CSS shape) */
+.paperclip {
+  position: absolute;
+  top: -18px;
+  right: 14px;
+  width: 24px;
+  height: 46px;
+  border: 4px solid var(--dark-red);
+  border-radius: 12px;
+  opacity: 0.85;
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+.paperclip::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 4px;
+  width: 12px;
+  height: 26px;
+  border: 4px solid var(--dark-red);
+  border-radius: 8px;
+}
+
+/* Sticker badges */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: var(--light-pink);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Diary-style note card */
+.note-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-soft);
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  color: var(--dark);
+  border-left: 5px dashed var(--pink);
+}
+
+/* Typewriter cursor */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  background: var(--dark-red);
+  margin-left: 2px;
+  animation: blink 0.9s steps(1) infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--pink);
+  border-radius: 3px;
+  margin: 16px auto;
+}
