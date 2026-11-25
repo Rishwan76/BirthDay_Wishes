@@ -54,7 +54,6 @@ const birthdaySchema = new mongoose.Schema(
       default: "classic-red",
     },
 
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
   },
   { timestamps: true }
 );

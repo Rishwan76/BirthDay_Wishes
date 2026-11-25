@@ -15,14 +15,12 @@ import upload from "../middleware/uploadMiddleware.js";
 
 const router = express.Router();
 
-// Admin-only management routes
 router.get("/", protect, getBirthdays);
 router.get("/id/:id", protect, getBirthdayById);
 router.post("/", protect, createBirthday);
 router.put("/:id", protect, updateBirthday);
 router.delete("/:id", protect, deleteBirthday);
 
-// Photo management (admin only)
 router.post("/:id/photos", protect, upload.array("photos", 10), uploadPhotos);
 router.delete("/:id/photos/:photoId", protect, deletePhoto);
 router.put("/:id/photos/:photoId", protect, updatePhotoCaption);

@@ -91,7 +91,6 @@ export const createBirthday = async (req, res, next) => {
       musicUrl,
       theme,
       photos: Array.isArray(photos) ? photos : [],
-      createdBy: req.admin ? req.admin._id : undefined,
     });
 
     res.status(201).json(birthday);

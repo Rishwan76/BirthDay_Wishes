@@ -65,11 +65,7 @@ const Dashboard = () => {
             >
               <Plus size={18} /> Create Birthday
             </Link>
-            <button
-              onClick={handleLogout}
-              className="btn"
-              style={{ background: "var(--white)", border: "2px solid var(--dark-red)", color: "var(--dark-red)", borderRadius: 999, display: "flex", alignItems: "center", gap: 6 }}
-            >
+            <button onClick={handleLogout} className="btn" style={{ background: "var(--white)", border: "2px solid var(--dark-red)", color: "var(--dark-red)", borderRadius: 999, display: "flex", alignItems: "center", gap: 6 }}>
               <LogOut size={18} /> Logout
             </button>
           </div>

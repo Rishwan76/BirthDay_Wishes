@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import api from "../services/api";
 
 const AuthContext = createContext(null);
@@ -9,26 +9,27 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const stored = localStorage.getItem("adminData");
-    if (stored) {
-      setAdmin(JSON.parse(stored));
-    }
+    if (stored) setAdmin(JSON.parse(stored));
     setLoading(false);
   }, []);
 
-  const login = async (email, password) => {
-    const { data } = await api.post("/auth/login", { email, password });
+  const saveSession = (data) => {
     localStorage.setItem("adminToken", data.token);
     localStorage.setItem("adminData", JSON.stringify(data));
     setAdmin(data);
     return data;
   };
 
-  const register = async (name, email, password) => {
-    const { data } = await api.post("/auth/register", { name, email, password });
-    localStorage.setItem("adminToken", data.token);
-    localStorage.setItem("adminData", JSON.stringify(data));
-    setAdmin(data);
-    return data;
+  const login = async (email, password) => {
+    const { data } = await api.post("/auth/login", { email, password });
+    return saveSession(data);
+  };
+
+  const register = async (name, email, password, setupKey) => {
+    const { data } = await api.post("/auth/register", {
+      name, email, password, setupKey,
+    });
+    return saveSession(data);
   };
 
   const logout = () => {

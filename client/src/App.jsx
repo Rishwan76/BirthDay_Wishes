@@ -13,49 +13,16 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <Routes>
-      {/* Public */}
       <Route path="/" element={<Home />} />
       <Route path="/birthday/:slug" element={<BirthdayExperience />} />
 
-      {/* Admin auth */}
       <Route path="/admin/login" element={<AdminLogin />} />
       <Route path="/admin/register" element={<AdminRegister />} />
+      <Route path="/admin/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/admin/birthdays/new" element={<ProtectedRoute><CreateBirthday /></ProtectedRoute>} />
+      <Route path="/admin/birthdays/:id/edit" element={<ProtectedRoute><EditBirthday /></ProtectedRoute>} />
+      <Route path="/birthday-preview/:id" element={<ProtectedRoute><PreviewBirthday /></ProtectedRoute>} />
 
-      {/* Admin protected */}
-      <Route
-        path="/admin/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/admin/birthdays/new"
-        element={
-          <ProtectedRoute>
-            <CreateBirthday />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/admin/birthdays/:id/edit"
-        element={
-          <ProtectedRoute>
-            <EditBirthday />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/birthday-preview/:id"
-        element={
-          <ProtectedRoute>
-            <PreviewBirthday />
-          </ProtectedRoute>
-        }
-      />
-
-      {/* Fallback */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

@@ -44,13 +44,13 @@ const Home = () => {
 
           <p style={{ marginTop: 24, fontSize: "0.95rem", opacity: 0.75 }}>
             This page is the app's home base. Open a personalized birthday link like{" "}
-            <code>/birthday/your-slug</code> to view a birthday experience, or manage
-            experiences from the admin dashboard.
+            <code>/birthday/your-slug</code> to view a birthday experience, or create and manage
+            experiences from the dashboard.
           </p>
 
           <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 28, flexWrap: "wrap" }}>
             <Link
-              to="/admin/login"
+              to="/admin/dashboard"
               className="btn float-btn"
               style={{
                 background: "var(--dark-red)",
@@ -59,7 +59,7 @@ const Home = () => {
                 fontWeight: 700,
               }}
             >
-              Open Your Birthday Surprise 🎁
+              Open the Birthday Studio 🎁
             </Link>
           </div>
         </div>

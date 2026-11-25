@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -26,10 +27,21 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/birthdays", birthdayRoutes);
+app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 
-app.get("/", (req, res) => {
-  res.json({ message: "Birthday Memories API is running 🎂" });
-});
+// Serve the built React app (client/dist) when it exists (production)
+const clientDist = path.join(__dirname, "..", "client", "dist");
+if (fs.existsSync(clientDist)) {
+  app.use(express.static(clientDist));
+  app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/api") || req.path.startsWith("/uploads")) return next();
+    res.sendFile(path.join(clientDist, "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.json({ message: "Birthday Memories API is running 🎂" });
+  });
+}
 
 // Error handling (must be last)
 app.use(notFound);
