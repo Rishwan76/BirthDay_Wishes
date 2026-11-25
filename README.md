@@ -122,6 +122,8 @@ Set `ADMIN_NAME`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` in `server/.env` before
 starting the server. It creates the initial admin account if none exists.
 Afterward, remove those three variables and use
 `http://localhost:5173/admin/login`.
+Once logged in, use **Register Admin** on the dashboard to create additional
+admin accounts with a name, email, and password.
 
 ### 5. Create a birthday experience
 
@@ -137,6 +139,7 @@ from the dashboard.
 **Auth**
 | Method | Endpoint | Description |
 |---|---|---|
+| POST | `/api/auth/register` | Create an admin (requires an admin token) |
 | POST | `/api/auth/login` | Log in, returns JWT |
 | GET | `/api/auth/me` | Get logged-in admin profile (protected) |
 

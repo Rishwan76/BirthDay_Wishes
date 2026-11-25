@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Plus, Trash2, Pencil, Eye, Link as LinkIcon, LogOut } from "lucide-react";
+import { Plus, UserPlus, Trash2, Pencil, Eye, Link as LinkIcon, LogOut } from "lucide-react";
 import api from "../../services/api";
 import { useAuth } from "../../context/AuthContext";
 
@@ -64,6 +64,13 @@ const Dashboard = () => {
               style={{ background: "var(--dark-red)", color: "var(--white)", borderRadius: 999, fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}
             >
               <Plus size={18} /> Create Birthday
+            </Link>
+            <Link
+              to="/admin/register"
+              className="btn"
+              style={{ background: "var(--white)", border: "2px solid var(--dark-red)", color: "var(--dark-red)", borderRadius: 999, fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}
+            >
+              <UserPlus size={18} /> Register Admin
             </Link>
             <button onClick={handleLogout} className="btn" style={{ background: "var(--white)", border: "2px solid var(--dark-red)", color: "var(--dark-red)", borderRadius: 999, display: "flex", alignItems: "center", gap: 6 }}>
               <LogOut size={18} /> Logout
