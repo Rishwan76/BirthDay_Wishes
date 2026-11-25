@@ -88,8 +88,11 @@ Edit `server/.env`:
 PORT=5000
 MONGO_URI=mongodb://127.0.0.1:27017/birthday-animation
 JWT_SECRET=replace_with_a_long_random_string
-ADMIN_REGISTRATION_KEY=replace_with_a_different_long_random_string
 CLIENT_URL=http://localhost:5173
+# Set these to provision the first admin, then remove them.
+ADMIN_NAME=
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
 ```
 
 Run the server:
@@ -113,11 +116,11 @@ npm run dev
 The app will be available at `http://localhost:5173` (Vite dev server proxies
 `/api` and `/uploads` requests to the backend — see `client/vite.config.js`).
 
-### 4. Create the first admin account
+### 4. Provision the first admin account
 
-Set `ADMIN_REGISTRATION_KEY` and `JWT_SECRET` in `server/.env`, then visit
-`http://localhost:5173/admin/register`. Registration requires the setup key
-and is disabled after the first admin is created. Future visits use
+Set `ADMIN_NAME`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` in `server/.env` before
+starting the server. It creates the initial admin account if none exists.
+Afterward, remove those three variables and use
 `http://localhost:5173/admin/login`.
 
 ### 5. Create a birthday experience
@@ -134,7 +137,6 @@ from the dashboard.
 **Auth**
 | Method | Endpoint | Description |
 |---|---|---|
-| POST | `/api/auth/register` | Create the first admin (requires setup key) |
 | POST | `/api/auth/login` | Log in, returns JWT |
 | GET | `/api/auth/me` | Get logged-in admin profile (protected) |
 
@@ -190,13 +192,15 @@ depends on `photo.url`, so no other code needs to change.
 ## 🚢 Deployment Notes
 
 **Single-service deploy (recommended):** the Express server serves the built
-client. Build: `npm run build`, Start: `npm start`. Configure `MONGO_URI`,
-`JWT_SECRET`, and `ADMIN_REGISTRATION_KEY` as environment variables.
+client. Build: `npm run build`, Start: `npm start`. Configure `MONGO_URI` and
+`JWT_SECRET`; set `ADMIN_NAME`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` in Render
+only when provisioning the first admin, then remove them.
 A `render.yaml` is included for Render.
 
 
 - **Backend**: deploy to any Node host (Render, Railway, Fly.io, etc.). Set
-  `MONGO_URI`, `JWT_SECRET`, and `ADMIN_REGISTRATION_KEY` as environment variables. For
+  `MONGO_URI` and `JWT_SECRET` as environment variables. Set the three admin
+  bootstrap variables only to provision the initial admin, then remove them. For
   persistent photo storage in production, move uploads to a cloud bucket
   (Cloudinary/S3) rather than local disk, since most hosts have ephemeral
   filesystems.

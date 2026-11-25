@@ -25,13 +25,6 @@ export const AuthProvider = ({ children }) => {
     return saveSession(data);
   };
 
-  const register = async (name, email, password, setupKey) => {
-    const { data } = await api.post("/auth/register", {
-      name, email, password, setupKey,
-    });
-    return saveSession(data);
-  };
-
   const logout = () => {
     localStorage.removeItem("adminToken");
     localStorage.removeItem("adminData");
@@ -39,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ admin, loading, login, register, logout }}>
+    <AuthContext.Provider value={{ admin, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

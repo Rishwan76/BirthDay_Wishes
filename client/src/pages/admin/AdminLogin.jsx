@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAuth } from "../../context/AuthContext";
 
@@ -37,9 +37,6 @@ const AdminLogin = () => {
             {error && <p style={{ color: "var(--dark-red)", fontSize: "0.9rem" }}>{error}</p>}
             <button type="submit" disabled={loading} className="btn" style={buttonStyle}>{loading ? "Logging in..." : "Log In"}</button>
           </form>
-          <p style={{ marginTop: 18, textAlign: "center", fontSize: "0.9rem" }}>
-            First-time setup? <Link to="/admin/register" style={{ color: "var(--dark-red)", fontWeight: 600 }}>Register</Link>
-          </p>
         </div>
       </motion.div>
     </div>
