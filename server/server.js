@@ -5,6 +5,7 @@ import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import connectDB from "./config/db.js";
+import { uploadsDir } from "./config/uploads.js";
 import Admin from "./models/Admin.js";
 import authRoutes from "./routes/authRoutes.js";
 import birthdayRoutes from "./routes/birthdayRoutes.js";
@@ -22,7 +23,7 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
 // Serve uploaded photos statically
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(uploadsDir));
 
 // API routes
 app.use("/api/auth", authRoutes);
